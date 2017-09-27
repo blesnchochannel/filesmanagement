@@ -19,6 +19,11 @@ class ImageUpload extends CI_Controller {
         //load this to validate the inputs in upload form
         $this->load->library('form_validation');
     }
+    
+    public function index() {
+
+        $this->load->view('teste');
+    }
  
     //appends all error messages
     private function handle_error($err) {

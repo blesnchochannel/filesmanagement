@@ -5,7 +5,6 @@ class Files extends CI_Controller {
     public function __construct() {
 
         parent::__construct();
-        
     }
 
     public function index() {
@@ -16,7 +15,7 @@ class Files extends CI_Controller {
         $this->load->view('index', $data);
         $this->load->view('footer');
     }
-    
+
     public function teste() {
 
         $this->load->view('teste');
@@ -85,8 +84,7 @@ class Files extends CI_Controller {
             $_FILES['userfile']['size'] = $files['userfile']['size'][$i];
 
             $this->upload->initialize($this->set_upload_options());
-            $this->upload->resize->do_upload();
-            //$this->upload->do_upload();
+            $this->upload->do_upload();
         }
 
         redirect('/files/fotos');
@@ -98,13 +96,32 @@ class Files extends CI_Controller {
         $config['upload_path'] = './images/uploads/';
         $config['encrypt_name'] = TRUE;
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['quality'] = 10;
         $config['max_size'] = 5000;
         $config['max_width'] = 1920;
         $config['max_height'] = 1080;
         $config['overwrite'] = FALSE;
 
         return $config;
+    }
+    
+    function do_resize($file) {
+
+        $this->load->library('image_lib');
+        
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = './images/uploads/'.$file;
+        $config['create_thumb'] = TRUE;
+        $config['maintain_ratio'] = TRUE;
+        $config['width'] = 75;
+        $config['height'] = 50;
+        
+        var_dump ($config);
+
+        $this->load->library('image_lib', $config);
+
+        $this->image_lib->resize();
+
+        //redirect('/files/fotos');
     }
 
     function do_rename() {

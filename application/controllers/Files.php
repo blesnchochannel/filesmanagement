@@ -33,7 +33,7 @@ class Files extends CI_Controller {
 
     public function albuns() {
 
-        $map = directory_map('./images/uploads');
+        $map = directory_map('./images/albuns');
         $data = array('directory' => $map);
         $this->load->view('header', array('error' => ' '));
         $this->load->view('files_album', $data);
@@ -47,27 +47,6 @@ class Files extends CI_Controller {
         $this->load->view('header', array('error' => ' '));
         $this->load->view('files_excluded', $data);
         $this->load->view('footer');
-    }
-
-    public function do_upload2() {
-
-        /* $config['file_name']            = $new_name; */
-        $config['upload_path'] = './images/uploads/';
-        $config['encrypt_name'] = TRUE;
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = 5000;
-        $config['max_width'] = 1920;
-        $config['max_height'] = 1080;
-
-        $this->load->library('upload', $config);
-
-        if (!$this->upload->do_upload('userfile')) {
-            $error = array('error' => $this->upload->display_errors());
-            $this->load->view('files_list', $error_upload);
-        } else {
-            $data = array('upload_data' => $this->upload->data());
-            $this->load->view('files_list', $data);
-        }
     }
 
     function do_upload() {
@@ -85,7 +64,15 @@ class Files extends CI_Controller {
             $_FILES['userfile']['size'] = $files['userfile']['size'][$i];
 
             $this->upload->initialize($this->set_upload_options());
-            $this->upload->do_upload();
+            //$this->upload->do_upload();
+
+            if (!$this->upload->do_upload('userfile')) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->load->view('files_list', $error_upload);
+            } else {
+                $data = array('upload_data' => $this->upload->data());
+                $this->load->view('files_list', $data);
+            }
         }
 
         redirect('/files/fotos');
@@ -109,6 +96,7 @@ class Files extends CI_Controller {
 
         $config['image_library'] = 'gd2';
         $config['source_image'] = './images/uploads/' . $file;
+        $config['quality'] = 100;
         $config['create_thumb'] = TRUE;
         $config['maintain_ratio'] = TRUE;
         $config['width'] = 140;
@@ -124,17 +112,6 @@ class Files extends CI_Controller {
     }
 
     function do_mark($file) {
-
-        /* $imgConfig = array();
-          $imgConfig['image_library'] = 'gd2';
-          $imgConfig['source_image'] = './images/uploads/' . $file;
-          $imgConfig['wm_text'] = 'Copyright 2017 - Rafah Borges';
-          $imgConfig['wm_type'] = 'text';
-          $imgConfig['wm_font_size'] = '16';
-
-          $this->load->library('image_lib', $imgConfig);
-          $this->image_lib->initialize($imgConfig);
-          $this->image_lib->watermark(); */
 
         $config = array();
         $config['image_library'] = 'gd2';
@@ -201,6 +178,20 @@ class Files extends CI_Controller {
             }
         }
         redirect('/files/lixeira');
+    }
+
+    function dir_create() {
+
+        $dirname = $this->input->post('name');
+        $dir = './images/albuns/';
+
+        $path = base_url() . APPPATH . $dir . $dirname;
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, TRUE);
+        }
+
+        redirect('/files/albuns');
     }
 
 }

@@ -4,31 +4,31 @@
         <meta charset="UTF-8">
         <title>Codeigniter Image Resize</title>
         <style type="text/css">
- 
+
             ::selection { background-color: #E13300; color: white; }
             ::-moz-selection { background-color: #E13300; color: white; }
- 
+
             body {
                 background-color: #fff;
                 margin: 40px;
                 font: 13px/20px normal Helvetica, Arial, sans-serif;
                 color: #4F5155;
             }            
- 
+
             #body {
                 margin: 0 15px 0 15px;
             }
- 
+
             #container {
                 margin: 10px;
                 border: 1px solid #D0D0D0;
                 box-shadow: 0 0 8px #D0D0D0;
             }
- 
+
             .error {
                 color: #E13300;
             }
- 
+
             .success {
                 color: darkgreen;
             }
@@ -37,7 +37,7 @@
     <body>
         <div id="container">
             <h1>CodeIgniter Image Resize</h1>
- 
+
             <div id="body">
                 <p>Select an image file to resize</p>
                 <?php
@@ -68,7 +68,7 @@
                 echo form_close();
                 ?>
             </div>
- 
+
         </div>
     </body>
 </html>

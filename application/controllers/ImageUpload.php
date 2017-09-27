@@ -1,35 +1,35 @@
 <?php
- 
+
 defined('BASEPATH') OR exit('No direct script access allowed');
- 
+
 /**
  * Description of ImageUpload
  *
  * @author http://www.roytuts.com
  */
-class Teste extends CI_Controller {
- 
+class ImageUpload extends CI_Controller {
+
     //variable for storing error message
     private $error;
     //variable for storing success message
     private $success;
- 
+
     function __construct() {
         parent::__construct();
         //load this to validate the inputs in upload form
         $this->load->library('form_validation');
     }
-    
+
     //appends all error messages
     private function handle_error($err) {
         $this->error .= $err . "rn";
     }
- 
+
     //appends all success messages
     private function handle_success($succ) {
         $this->success .= $succ . "rn";
     }
- 
+
     public function index() {
         if ($this->input->post('teste')) {
             //set preferences
@@ -89,12 +89,12 @@ class Teste extends CI_Controller {
                 $this->handle_success('Image was successfully uploaded to direcoty <strong>' . $upload_path . '</strong> and resized.');
             }
         }
- 
+
         //load the error and success messages
         $data['errors'] = $this->error;
         $data['success'] = $this->success;
         //load the view along with data
         $this->load->view('teste', $data);
     }
- 
+
 }

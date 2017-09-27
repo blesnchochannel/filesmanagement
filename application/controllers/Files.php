@@ -85,6 +85,7 @@ class Files extends CI_Controller {
             $_FILES['userfile']['size'] = $files['userfile']['size'][$i];
 
             $this->upload->initialize($this->set_upload_options());
+            $this->upload->resize();
             $this->upload->do_upload();
         }
 
@@ -97,7 +98,7 @@ class Files extends CI_Controller {
         $config['upload_path'] = './images/uploads/';
         $config['encrypt_name'] = TRUE;
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['quality'] = 50;
+        $config['quality'] = 10;
         $config['max_size'] = 5000;
         $config['max_width'] = 1920;
         $config['max_height'] = 1080;

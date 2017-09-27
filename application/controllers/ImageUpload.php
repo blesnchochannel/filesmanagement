@@ -35,7 +35,7 @@ class ImageUpload extends CI_Controller {
         if ($this->input->post('image_upload')) {
             //set preferences
             //file upload destination
-            $upload_path = './upload/';
+            $upload_path = './images/uploads/';
             $config['upload_path'] = $upload_path;
             //allowed file types. * means all types
             $config['allowed_types'] = 'jpg|png|gif';

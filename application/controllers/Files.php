@@ -85,8 +85,8 @@ class Files extends CI_Controller {
             $_FILES['userfile']['size'] = $files['userfile']['size'][$i];
 
             $this->upload->initialize($this->set_upload_options());
-            $this->upload->resize();
-            $this->upload->do_upload();
+            $this->upload->resize->do_upload();
+            //$this->upload->do_upload();
         }
 
         redirect('/files/fotos');

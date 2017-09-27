@@ -125,15 +125,26 @@ class Files extends CI_Controller {
 
     function do_mark($file) {
 
+        /* $imgConfig = array();
+          $imgConfig['image_library'] = 'gd2';
+          $imgConfig['source_image'] = './images/uploads/' . $file;
+          $imgConfig['wm_text'] = 'Copyright 2017 - Rafah Borges';
+          $imgConfig['wm_type'] = 'text';
+          $imgConfig['wm_font_size'] = '16';
+
+          $this->load->library('image_lib', $imgConfig);
+          $this->image_lib->initialize($imgConfig);
+          $this->image_lib->watermark(); */
+
+        $config = array();
         $config['image_library'] = 'gd2';
         $config['source_image'] = './images/uploads/' . $file;
         $config['wm_text'] = 'Copyright 2017 - Rafah Borges';
         $config['wm_type'] = 'text';
-        $config['wm_font_size'] = '5';
+        $config['wm_font_size'] = '20';
         $config['wm_font_color'] = 'ffffff';
         $config['wm_vrt_alignment'] = 'bottom';
         $config['wm_hor_alignment'] = 'center';
-        $config['wm_padding'] = '20';
 
         $this->image_lib->clear();
         $this->image_lib->initialize($config);

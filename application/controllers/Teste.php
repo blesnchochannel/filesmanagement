@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @author http://www.roytuts.com
  */
-class ImageUpload extends CI_Controller {
+class Teste extends CI_Controller {
  
     //variable for storing error message
     private $error;
@@ -20,11 +20,6 @@ class ImageUpload extends CI_Controller {
         $this->load->library('form_validation');
     }
     
-    public function teste() {
-
-        $this->load->view('teste');
-    }
- 
     //appends all error messages
     private function handle_error($err) {
         $this->error .= $err . "rn";
@@ -36,7 +31,7 @@ class ImageUpload extends CI_Controller {
     }
  
     public function index() {
-        if ($this->input->post('image_upload')) {
+        if ($this->input->post('teste')) {
             //set preferences
             //file upload destination
             $upload_path = './images/uploads/';

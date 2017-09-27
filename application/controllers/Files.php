@@ -16,6 +16,11 @@ class Files extends CI_Controller {
         $this->load->view('index', $data);
         $this->load->view('footer');
     }
+    
+    public function teste() {
+
+        $this->load->view('teste');
+    }
 
     public function fotos() {
 

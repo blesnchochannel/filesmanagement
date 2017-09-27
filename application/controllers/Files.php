@@ -97,6 +97,7 @@ class Files extends CI_Controller {
         $config['upload_path'] = './images/uploads/';
         $config['encrypt_name'] = TRUE;
         $config['allowed_types'] = 'gif|jpg|png';
+        $config['quality'] = 50;
         $config['max_size'] = 5000;
         $config['max_width'] = 1920;
         $config['max_height'] = 1080;

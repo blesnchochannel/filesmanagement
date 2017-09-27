@@ -1,3 +1,4 @@
+ 	
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -31,10 +32,10 @@ class ImageUpload extends CI_Controller {
     }
 
     public function index() {
-        if ($this->input->post('teste')) {
+        if ($this->input->post('image_upload')) {
             //set preferences
             //file upload destination
-            $upload_path = './images/uploads/';
+            $upload_path = './upload/';
             $config['upload_path'] = $upload_path;
             //allowed file types. * means all types
             $config['allowed_types'] = 'jpg|png|gif';
@@ -94,7 +95,7 @@ class ImageUpload extends CI_Controller {
         $data['errors'] = $this->error;
         $data['success'] = $this->success;
         //load the view along with data
-        $this->load->view('teste', $data);
+        $this->load->view('image_upload', $data);
     }
 
 }

@@ -182,15 +182,38 @@ class Files extends CI_Controller {
 
     function dir_create() {
 
-        $dirname = $this->input->post('name');
+        date_default_timezone_set("America/Sao_Paulo");
+        $dirname = "album_".date("dmY_His");
         $dir = './images/albuns/';
 
-        $path = base_url() . APPPATH . $dir . $dirname;
+        $path = $dir . $dirname;
 
         if (!file_exists($path)) {
             mkdir($path, 0777, TRUE);
         }
 
+        redirect('/files/albuns');
+    }
+
+    function dir_rename() {
+
+        $dirname = "album_";
+        $dir = './images/albuns/';
+
+        $path = $dir . $dirname;
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, TRUE);
+        }
+
+        redirect('/files/albuns');
+    }
+
+    function dir_delete($file) {
+        
+        $dir = './images/albuns/';
+        $path = $dir . $file;
+        rmdir($dir . $file);
         redirect('/files/albuns');
     }
 

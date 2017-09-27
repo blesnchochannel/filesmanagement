@@ -3,7 +3,7 @@
 <!-- FOOTER -->
             <footer>
                 <p class="float-right"><a href="#">Volte ao topo</a></p>
-                <p>&copy; 2017 Rafah Borges. <!--&middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> --> </p>
+                <p>&copy; <?php echo date("Y");?> Rafah Borges. <!--&middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> --> </p>
             </footer>
 
         </div><!-- /.container -->

@@ -24,9 +24,10 @@
                 </p>
                 <p>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button class="btn btn-warning" onclick="submitForm()"><i class="fa fa-pencil fa-fw"></i> Renomear</button>
-                    <button class="btn btn-warning" onclick="window.location.href='do_resize/<?php echo $file; ?>'"><i class="fa fa-expand fa-fw"></i> Redimencionar</button>
-                    <button class="btn btn-warning" onclick="window.location.href='do_trash/<?php echo $file; ?>'"><i class="fa fa-trash-o fa-fw"></i> Lixeira</button>
+                    <button class="btn btn-warning" onclick="submitForm()"><i class="fa fa-pencil fa-fw"></i></button>
+                    <button class="btn btn-warning" onclick="window.location.href='do_mark/<?php echo $file; ?>'"><i class="fa fa-tint fa-fw"></i></button>
+                    <button class="btn btn-warning" onclick="window.location.href='do_resize/<?php echo $file; ?>'"><i class="fa fa-expand fa-fw"></i></button>
+                    <button class="btn btn-warning" onclick="window.location.href='do_trash/<?php echo $file; ?>'"><i class="fa fa-trash-o fa-fw"></i></button>
                 </div>
                 </p>                    
             </div><!-- /.col-lg-4 -->

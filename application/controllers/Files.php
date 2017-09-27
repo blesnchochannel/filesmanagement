@@ -5,6 +5,7 @@ class Files extends CI_Controller {
     public function __construct() {
 
         parent::__construct();
+        $this->load->library('image_lib');
     }
 
     public function index() {
@@ -103,25 +104,45 @@ class Files extends CI_Controller {
 
         return $config;
     }
-    
+
     function do_resize($file) {
 
-        $this->load->library('image_lib');
-        
         $config['image_library'] = 'gd2';
-        $config['source_image'] = './images/uploads/'.$file;
+        $config['source_image'] = './images/uploads/' . $file;
         $config['create_thumb'] = TRUE;
         $config['maintain_ratio'] = TRUE;
-        $config['width'] = 75;
-        $config['height'] = 50;
-        
-        var_dump ($config);
+        $config['width'] = 140;
+        $config['height'] = 140;
 
-        $this->load->library('image_lib', $config);
+        $this->image_lib->initialize($config);
 
-        $this->image_lib->resize();
+        if (!$this->image_lib->resize()) {
+            echo $this->image_lib->display_errors('<p>', '</p>');
+        }
 
-        //redirect('/files/fotos');
+        redirect('/files/fotos');
+    }
+
+    function do_mark($file) {
+
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = './images/uploads/' . $file;
+        $config['wm_text'] = 'Copyright 2017 - Rafah Borges';
+        $config['wm_type'] = 'text';
+        $config['wm_font_size'] = '5';
+        $config['wm_font_color'] = 'ffffff';
+        $config['wm_vrt_alignment'] = 'bottom';
+        $config['wm_hor_alignment'] = 'center';
+        $config['wm_padding'] = '20';
+
+        $this->image_lib->clear();
+        $this->image_lib->initialize($config);
+
+        if (!$this->image_lib->watermark()) {
+            echo $this->image_lib->display_errors('<p>', '</p>');
+        }
+
+        redirect('/files/fotos');
     }
 
     function do_rename() {

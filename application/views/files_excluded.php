@@ -19,7 +19,7 @@
                 <?php foreach ($directory as $file):
                 $no_extension = substr($file, 0, strrpos($file, "."));?>
                 <div class="col-lg-4">
-                    <img class="rounded-circle" src="http://rafahsborges.com.br/filesmanagement/images/excluded/<?php echo $file; ?>" width="140" height="140">
+                    <img class="rounded-circle" src="<?php echo base_url('images/excluded/'); echo $file; ?>" width="140" height="140">
                     <p><?php echo $no_extension; ?></p>
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <a class="btn btn-warning" href="do_undelete/<?php echo $file; ?>"><i class="fa fa-undo fa-fw"></i> Restaurar</a>

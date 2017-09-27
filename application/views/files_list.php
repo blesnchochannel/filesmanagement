@@ -24,8 +24,8 @@
                 </p>
                 <p>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <a class="btn btn-warning" onclick="submitForm()"><i class="fa fa-pencil fa-fw"></i> Renomear</a>
-                    <a class="btn btn-warning" href="do_trash/<?php echo $file; ?>"><i class="fa fa-trash-o fa-fw"></i> Lixeira</a>
+                    <button class="btn btn-warning" onclick="submitForm()"><i class="fa fa-pencil fa-fw"></i> Renomear</button>
+                    <button class="btn btn-warning" href="do_trash/<?php echo $file; ?>"><i class="fa fa-trash-o fa-fw"></i> Lixeira</button>
                 </div>
                 </p>                    
             </div><!-- /.col-lg-4 -->

@@ -200,12 +200,12 @@ class Files extends CI_Controller {
         $dir = './images/albuns/';
         $newdirname = $this->input->post('name');
         $olddirname = $this->input->post('file');
-        
-        if (!file_exists($dir.$newdirname)) {
-            rename($dir . $olddirname, $dir . $newdirname);
+
+        if (!file_exists($dir . $newdirname)) {
+            rename($dir . $olddirname . "/", $dir . $newdirname . "/");
         }
 
-        redirect('/files/albuns');
+        //redirect('/files/albuns');
     }
 
     function dir_delete($file) {

@@ -15,13 +15,14 @@
         foreach ($directory as $file => $value):
             $name = str_replace("/", "", $file);
             $dir_name = stripslashes($name);
+            $dir_name2 = stripslashes($file);
             ?>
             <div class="col-lg-4"><i class="fa fa-folder fa-5x" aria-hidden="true"></i>                
                 <p>
                     <?php
                     echo form_open('files/dir_rename', 'id="formulario"');
-                    echo form_input(array('name' => 'name', 'class' => 'form-control-plaintext', 'value' => $dir_name));
-                    echo form_input(array('type' => 'hidden', 'name' => 'file', 'value' => $dir_name));
+                    echo form_input(array('name' => 'name', 'class' => 'form-control-plaintext', 'value' => $dir_name2));
+                    echo form_input(array('type' => 'hidden', 'name' => 'file', 'value' => $dir_name2));
                     echo form_close();
                     ?>
                 </p>

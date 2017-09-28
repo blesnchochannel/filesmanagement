@@ -13,8 +13,9 @@
     <div class="row">
         <?php
         foreach ($directory as $file => $value):
-            //$dir_name = substr($file, 0, strrpos($file, "/\/"));
-            $dir_name = stripslashes($file);
+            $name = str_replace("/","",$file);            
+            $dir_name = stripslashes($name);
+            echo $dir_name;
             ?>
             <div class="col-lg-4"><i class="fa fa-folder fa-5x" aria-hidden="true"></i>                
                 <p>

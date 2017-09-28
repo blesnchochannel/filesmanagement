@@ -194,6 +194,19 @@ class Files extends CI_Controller {
 
         redirect('/files/albuns');
     }
+    
+    function dir_open($dir_name) {
+
+        $dir = './images/albuns/';
+
+        $path = $dir . $dir_name;
+        
+        $map = directory_map($path);
+        $data = array('directory' => $map, 'caminho' => $dir_name);
+        $this->load->view('header', array('error' => ' '));
+        $this->load->view('files_albuns', $data);
+        $this->load->view('footer');
+    }
 
     function dir_rename() {
 

@@ -16,7 +16,7 @@
             $name = str_replace("/", "", $file);
             $dir_name = stripslashes($name);
             ?>
-            <div class="col-lg-4"><i class="fa fa-folder fa-5x" aria-hidden="true"></i>                
+            <div class="col-lg-4"><a href="dir_open/<?php echo $dir_name; ?>"><i class="fa fa-folder fa-5x" aria-hidden="true"></i></a>                
                 <p>
                     <?php
                     echo form_open('files/dir_rename', 'id="formulario"');

@@ -183,7 +183,7 @@ class Files extends CI_Controller {
     function dir_create() {
 
         date_default_timezone_set("America/Sao_Paulo");
-        $dirname = "album_".date("dmY_His");
+        $dirname = "album_" . date("dmY_His");
         $dir = './images/albuns/';
 
         $path = $dir . $dirname;
@@ -197,20 +197,19 @@ class Files extends CI_Controller {
 
     function dir_rename() {
 
-        $dirname = "album_";
         $dir = './images/albuns/';
-
-        $path = $dir . $dirname;
-
-        if (!file_exists($path)) {
-            mkdir($path, 0777, TRUE);
+        $newdirname = $this->input->post('name');
+        $olddirname = $this->input->post('file');
+        
+        if (!file_exists($dir.$newdirname)) {
+            rename($dir . $olddirname, $dir . $newdirname);
         }
 
         redirect('/files/albuns');
     }
 
     function dir_delete($file) {
-        
+
         $dir = './images/albuns/';
         $path = $dir . $file;
         rmdir($dir . $file);

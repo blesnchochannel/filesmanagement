@@ -16,9 +16,10 @@
             $no_extension = substr($file, 0, strrpos($file, "."));
             ?>
             <div class="col-lg-4">
-                <img class="rounded-circle" src="<?php echo base_url('images/albuns/');
-            echo $caminho."/".$file;
-            ?>" width="140" height="140">
+                <img class="rounded-circle" src="<?php
+                echo base_url('images/albuns/');
+                echo $caminho . "/" . $file;
+                ?>" width="140" height="140">
                 <p>
                     <?php
                     echo form_open('files/do_rename', 'id="formulario"');

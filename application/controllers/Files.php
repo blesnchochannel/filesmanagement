@@ -8,6 +8,13 @@ class Files extends CI_Controller {
         $this->load->library('image_lib');
     }
 
+    public function header() {
+
+        $map = directory_map('./images/albuns');
+        $data = array('directory' => $map);
+        $this->load->view('header', $data);
+    }
+    
     public function index() {
 
         $map = directory_map('./images/uploads');
@@ -15,11 +22,6 @@ class Files extends CI_Controller {
         $this->load->view('header', array('error' => ' '));
         $this->load->view('index', $data);
         $this->load->view('footer');
-    }
-
-    public function teste() {
-
-        $this->load->view('teste');
     }
 
     public function fotos() {
@@ -37,6 +39,17 @@ class Files extends CI_Controller {
         $data = array('directory' => $map);
         $this->load->view('header', array('error' => ' '));
         $this->load->view('files_album', $data);
+        $this->load->view('footer');
+    }
+
+    public function files_albuns($dir_name) {
+
+        $dir = './images/albuns/';
+        $path = $dir . $dir_name;
+        $map = directory_map($path);
+        $data = array('directory' => $map, 'caminho' => $dir_name);
+        $this->load->view('header', array('error' => ' '));
+        $this->load->view('files_albuns', $data);
         $this->load->view('footer');
     }
 
@@ -63,8 +76,8 @@ class Files extends CI_Controller {
             $_FILES['userfile']['error'] = $files['userfile']['error'][$i];
             $_FILES['userfile']['size'] = $files['userfile']['size'][$i];
 
-            $this->upload->initialize($this->set_upload_options());
-            //$this->upload->do_upload();
+            $dir = $this->input->post('diretorio');
+            $this->upload->initialize($this->set_upload_options($dir));
 
             if (!$this->upload->do_upload('userfile')) {
                 $error = array('error' => $this->upload->display_errors());
@@ -75,13 +88,17 @@ class Files extends CI_Controller {
             }
         }
 
-        redirect('/files/fotos');
+        if ($dir === "./images/uploads/" ){
+            redirect('/files/fotos');
+        }else{
+            redirect('./files/albuns');
+        }
     }
 
-    private function set_upload_options() {
+    private function set_upload_options($dir) {
 
         $config = array();
-        $config['upload_path'] = './images/uploads/';
+        $config['upload_path'] = $dir;
         $config['encrypt_name'] = TRUE;
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 5000;
@@ -194,13 +211,13 @@ class Files extends CI_Controller {
 
         redirect('/files/albuns');
     }
-    
+
     function dir_open($dir_name) {
 
         $dir = './images/albuns/';
 
         $path = $dir . $dir_name;
-        
+
         $map = directory_map($path);
         $data = array('directory' => $map, 'caminho' => $dir_name);
         $this->load->view('header', array('error' => ' '));

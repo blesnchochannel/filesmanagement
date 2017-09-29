@@ -19,7 +19,7 @@ class Files extends CI_Controller {
 
         $map = directory_map('./images/uploads');
         $data = array('directory' => $map);
-        $this->load->view('header', array('error' => ' '));
+        $this->load->view('header');
         $this->load->view('index', $data);
         $this->load->view('footer');
     }
@@ -28,7 +28,7 @@ class Files extends CI_Controller {
 
         $map = directory_map('./images/uploads');
         $data = array('directory' => $map);
-        $this->load->view('header', array('error' => ' '));
+        $this->load->view('header');
         $this->load->view('files_list', $data);
         $this->load->view('footer');
     }
@@ -37,7 +37,7 @@ class Files extends CI_Controller {
 
         $map = directory_map('./images/albuns');
         $data = array('directory' => $map);
-        $this->load->view('header', array('error' => ' '));
+        $this->load->view('header');
         $this->load->view('files_album', $data);
         $this->load->view('footer');
     }
@@ -48,7 +48,7 @@ class Files extends CI_Controller {
         $path = $dir . $dir_name;
         $map = directory_map($path);
         $data = array('directory' => $map, 'caminho' => $dir_name);
-        $this->load->view('header', array('error' => ' '));
+        $this->load->view('header');
         $this->load->view('files_albuns', $data);
         $this->load->view('footer');
     }
@@ -57,7 +57,7 @@ class Files extends CI_Controller {
 
         $map = directory_map('./images/excluded');
         $data = array('directory' => $map);
-        $this->load->view('header', array('error' => ' '));
+        $this->load->view('header');
         $this->load->view('files_excluded', $data);
         $this->load->view('footer');
     }
@@ -228,14 +228,14 @@ class Files extends CI_Controller {
     function dir_rename() {
 
         $dir = './images/albuns/';
-        echo $newdirname = $this->input->post('name');
-        echo $olddirname = $this->input->post('file');
-
-        /*if (!file_exists($dir . $newdirname)) {
+        $newdirname = $this->input->post('name');
+        $olddirname = $this->input->post('file');
+        
+        if (!file_exists($dir . $newdirname)) {
             rename($dir . $olddirname, $dir . $newdirname);
         }
 
-        redirect('/files/albuns');*/
+        redirect('/files/albuns');
     }
 
     function dir_delete($file) {

@@ -13,7 +13,7 @@ class Files extends CI_Controller {
         $map = directory_map('./images/albuns');
         $header = array('directory' => $map);
         $this->load->view('header', $header);
-        
+
         return NULL;
     }
 
@@ -70,6 +70,10 @@ class Files extends CI_Controller {
         $files = $_FILES;
         $cpt = count($_FILES['userfile']['name']);
 
+        $dir = $this->input->post('diretorio');
+
+        $dir_name = substr($dir, strpos($dir, "./images/albuns/") + 16);
+
         for ($i = 0; $i < $cpt; $i++) {
             $_FILES['userfile']['name'] = $files['userfile']['name'][$i];
             $_FILES['userfile']['type'] = $files['userfile']['type'][$i];
@@ -77,7 +81,6 @@ class Files extends CI_Controller {
             $_FILES['userfile']['error'] = $files['userfile']['error'][$i];
             $_FILES['userfile']['size'] = $files['userfile']['size'][$i];
 
-            $dir = $this->input->post('diretorio');
             $this->upload->initialize($this->set_upload_options($dir));
 
             if (!$this->upload->do_upload('userfile')) {
@@ -92,7 +95,7 @@ class Files extends CI_Controller {
         if ($dir === "./images/uploads/") {
             redirect('/files/fotos');
         } else {
-            redirect('./files/albuns');
+            redirect('./files/files_albuns/' . $dir_name);
         }
     }
 
@@ -180,7 +183,7 @@ class Files extends CI_Controller {
         if ($basepath === "./images/uploads/") {
             redirect('/files/fotos');
         } else {
-            redirect('./files/albuns');
+            redirect('./files/files_albuns/' . $oldpath);
         }
     }
 

@@ -42,7 +42,7 @@
                     foreach ($directory as $file => $value):
                         $name = str_replace("/", "", $file);
                         $dir_name = stripslashes($name);
-                        ?>
+                        ?>                    
                         <option value="./images/albuns/<?php echo $dir_name; ?>/" <?php echo  set_select('diretorio', $dir_name); ?> ><?php echo $dir_name; ?> </option> 
                     <?php endforeach ?>
                 </select>

@@ -33,17 +33,7 @@
                 </p>                    
             </div><!-- /.col-lg-4 -->
         <?php endforeach; ?>
-    </div><!-- /.row -->
-    <select class="form-inline mt-2 mt-md-0" name="diretorio">
-        <option value="./images/uploads/" selected>Álbum Padrão</option>
-        <?php
-        foreach ($directory as $file => $value):
-            $name = str_replace("/", "", $file);
-            $dir_name = stripslashes($name);
-            ?>
-            <option value="<?php echo $file; ?>" <?php echo  set_select('diretorio', $file); ?> ><?php echo $dir_name; ?> </option> 
-        <?php endforeach ?>
-    </select>
+    </div><!-- /.row -->    
     <script>
         function submitForm() {
             document.getElementById("formulario").submit();

@@ -161,13 +161,17 @@ class Files extends CI_Controller {
         redirect('/files/fotos');
     }
 
-    function do_trash($file) {
+    function do_trash($caminho, $file) {
 
-        $oldpath = './images/uploads/';
+        $oldpath = $caminho;
         $newpath = './images/excluded/';
         rename($oldpath . $file, $newpath . $file);
-        unlink('./images/uploads/' . $file);
-        redirect('/files/fotos');
+        unlink($oldpath . $file);
+        if ($oldpath === "./images/uploads/" ){
+            redirect('/files/fotos');
+        }else{
+            redirect('./files/albuns');
+        }
     }
 
     function do_undelete($file) {

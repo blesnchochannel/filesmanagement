@@ -33,7 +33,7 @@
                     <button class="btn btn-warning" onclick="submitForm()"><i class="fa fa-pencil fa-fw"></i></button>
                     <button class="btn btn-warning" onclick="window.location.href = 'do_mark/<?php echo $file; ?>'"><i class="fa fa-tint fa-fw"></i></button>
                     <button class="btn btn-warning" onclick="window.location.href = 'do_resize/<?php echo $file; ?>'"><i class="fa fa-expand fa-fw"></i></button>
-                    <button class="btn btn-warning" onclick="window.location.href = 'do_trash/<?php echo $file; ?>'"><i class="fa fa-trash-o fa-fw"></i></button>
+                    <button class="btn btn-warning" onclick="window.location.href = 'do_trash/<?php echo $caminho."&".$file; ?>'"><i class="fa fa-trash-o fa-fw"></i></button>
                 </div>
                 </p>                    
             </div><!-- /.col-lg-4 -->

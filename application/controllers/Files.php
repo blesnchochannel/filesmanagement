@@ -8,38 +8,43 @@ class Files extends CI_Controller {
         $this->load->library('image_lib');
     }
 
-    public function header() {
+    private function doHeader() {
 
         $map = directory_map('./images/albuns');
-        $data = array('directory' => $map);
-        $this->load->view('header', $data);
+        $header = array('directory' => $map);
+        $this->load->view('header', $header);
+        
+        return NULL;
     }
-    
+
+    private function doViews($argument, $data) {
+
+        $this->doHeader();
+        $this->load->view($argument, $data);
+        $this->load->view('footer');
+
+        return NULL;
+    }
+
     public function index() {
 
         $map = directory_map('./images/uploads');
         $data = array('directory' => $map);
-        $this->load->view('header');
-        $this->load->view('index', $data);
-        $this->load->view('footer');
+        $this->doViews('index', $data);
     }
 
     public function fotos() {
 
         $map = directory_map('./images/uploads');
         $data = array('directory' => $map);
-        $this->load->view('header');
-        $this->load->view('files_list', $data);
-        $this->load->view('footer');
+        $this->doViews('files_list', $data);
     }
 
     public function albuns() {
 
         $map = directory_map('./images/albuns');
         $data = array('directory' => $map);
-        $this->load->view('header');
-        $this->load->view('files_album', $data);
-        $this->load->view('footer');
+        $this->doViews('files_album', $data);
     }
 
     public function files_albuns($dir_name) {
@@ -48,18 +53,14 @@ class Files extends CI_Controller {
         $path = $dir . $dir_name;
         $map = directory_map($path);
         $data = array('directory' => $map, 'caminho' => $dir_name);
-        $this->load->view('header');
-        $this->load->view('files_albuns', $data);
-        $this->load->view('footer');
+        $this->doViews('files_albuns', $data);
     }
 
     public function lixeira() {
 
         $map = directory_map('./images/excluded');
         $data = array('directory' => $map);
-        $this->load->view('header');
-        $this->load->view('files_excluded', $data);
-        $this->load->view('footer');
+        $this->doViews('files_excluded', $data);
     }
 
     function do_upload() {
@@ -88,9 +89,9 @@ class Files extends CI_Controller {
             }
         }
 
-        if ($dir === "./images/uploads/" ){
+        if ($dir === "./images/uploads/") {
             redirect('/files/fotos');
-        }else{
+        } else {
             redirect('./files/albuns');
         }
     }
@@ -161,15 +162,24 @@ class Files extends CI_Controller {
         redirect('/files/fotos');
     }
 
-    function do_trash($caminho, $file) {
+    function do_trash() {
 
-        $oldpath = $caminho;
+        $path = './images/uploads/';
+        $file = $this->input->post('file');
+        $oldpath = $this->input->post('caminho');
         $newpath = './images/excluded/';
-        rename($oldpath . $file, $newpath . $file);
-        unlink($oldpath . $file);
-        if ($oldpath === "./images/uploads/" ){
+
+        if ($path === $oldpath) {
+            $basepath = './images/uploads/';
+        } else {
+            $basepath = './images/albuns/' . $oldpath . "/";
+        }
+
+        rename($basepath . $file, $newpath . $file);
+        //unlink($basepath . $file);
+        if ($basepath === "./images/uploads/") {
             redirect('/files/fotos');
-        }else{
+        } else {
             redirect('./files/albuns');
         }
     }
@@ -234,7 +244,7 @@ class Files extends CI_Controller {
         $dir = './images/albuns/';
         $newdirname = $this->input->post('name');
         $olddirname = $this->input->post('file');
-        
+
         if (!file_exists($dir . $newdirname)) {
             rename($dir . $olddirname, $dir . $newdirname);
         }

@@ -36,7 +36,7 @@
                 echo form_open_multipart('files/do_upload', 'class="form-inline mt-2 mt-md-0"', 'id="formulario_upload"');
                 echo form_input(array('type' => 'file', 'name' => 'userfile[]', 'class' => 'form-control mr-sm-2', 'placeholder' => 'Envie aqui seus arquivos!', 'contents' => 'aria-label="Enviar" multiple=""'));
                 ?>
-                <select class="form-control custom-select" name="diretorio">
+                <select class="form-control custom-select" id="select" name="diretorio">
                     <option value="./images/uploads/" selected>Álbum Padrão</option>
                     <?php
                     foreach ($directory as $file => $value):

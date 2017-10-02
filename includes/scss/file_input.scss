@@ -1,0 +1,79 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 02/10/2017, 12:25:32
+    Author     : Rafael Souza Borges
+*/
+
+// File
+//
+// Custom file input.
+
+.custom-file {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  height: $custom-file-height;
+  margin-bottom: 0;
+}
+
+.custom-file-input {
+  min-width: $custom-file-width;
+  max-width: 100%;
+  height: $custom-file-height;
+  margin: 0;
+  opacity: 0;
+
+  &:focus ~ .custom-file-control {
+    @include box-shadow($custom-file-focus-box-shadow);
+  }
+}
+
+.custom-file-control {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  height: $custom-file-height;
+  padding: $custom-file-padding-x $custom-file-padding-y;
+  line-height: $custom-file-line-height;
+  color: $custom-file-color;
+  pointer-events: none;
+  user-select: none;
+  background-color: $custom-file-bg;
+  border: $custom-file-border-width solid $custom-file-border-color;
+  @include border-radius($custom-file-border-radius);
+  @include box-shadow($custom-file-box-shadow);
+
+  @each $lang, $text in map-get($custom-file-text, placeholder) {
+    &:lang(#{$lang}):empty::after {
+      content: $text;
+    }
+  }
+
+  &::before {
+    position: absolute;
+    top: -$custom-file-border-width;
+    right: -$custom-file-border-width;
+    bottom: -$custom-file-border-width;
+    z-index: 6;
+    display: block;
+    height: $custom-file-height;
+    padding: $custom-file-padding-x $custom-file-padding-y;
+    line-height: $custom-file-line-height;
+    color: $custom-file-button-color;
+    background-color: $custom-file-button-bg;
+    border: $custom-file-border-width solid $custom-file-border-color;
+    @include border-radius(0 $custom-file-border-radius $custom-file-border-radius 0);
+  }
+
+  @each $lang, $text in map-get($custom-file-text, button-label) {
+    &:lang(#{$lang})::before {
+      content: $text;
+    }
+  }
+}

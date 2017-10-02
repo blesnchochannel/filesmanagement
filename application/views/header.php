@@ -8,7 +8,6 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="<?php echo base_url('includes/bootstrap/css/bootstrap.min.css'); ?>">
         <link rel="stylesheet" href="<?php echo base_url('includes/css/style.css'); ?>">
-        <link rel="stylesheet" href="<?php echo base_url('includes/css/form_input.css'); ?>">
         <link rel="stylesheet" href="<?php echo base_url('includes/font-awesome/css/font-awesome.min.css'); ?>">
     </head>
     <body>
@@ -35,25 +34,21 @@
                 </ul>
                 <?php
                 echo form_open_multipart('files/do_upload', 'class="form-inline mt-2 mt-md-0"', 'id="formulario_upload"');
-                echo form_input(array('type' => 'file', 'name' => 'userfile[]', 'class' => 'form-control mr-sm-2', 'contents' => 'aria-label="Enviar" multiple=""'));
+                echo form_input(array('type' => 'file', 'name' => 'userfile[]', 'class' => 'form-control mr-sm-2', 'placeholder' => 'Envie aqui seus arquivos!', 'contents' => 'aria-label="Enviar" multiple=""'));
                 ?>
-                <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="diretorio">
+                <select class="form-control custom-select" name="diretorio">
                     <option value="./images/uploads/" selected>Álbum Padrão</option>
                     <?php
                     foreach ($directory as $file => $value):
                         $name = str_replace("/", "", $file);
                         $dir_name = stripslashes($name);
                         ?>                    
-                        <option value="./images/albuns/<?php echo $dir_name; ?>/" <?php echo set_select('diretorio', $dir_name); ?> ><?php echo $dir_name; ?> </option> 
+                        <option value="./images/albuns/<?php echo $dir_name; ?>/" <?php echo  set_select('diretorio', $dir_name); ?> ><?php echo $dir_name; ?> </option> 
                     <?php endforeach ?>
                 </select>
                 <?php
                 echo form_submit(array('type' => 'submit', 'value' => 'Enviar', 'class' => 'btn btn-outline-success my-2 my-sm-0'));
                 echo form_close();
                 ?>
-                <label class="custom-file">
-                    <input type="file" id="file2" class="custom-file-input">
-                    <span class="custom-file-control"></span>
-                </label>
             </div>
         </nav>

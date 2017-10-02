@@ -39,6 +39,7 @@
                 <p>
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button class="btn btn-warning" onclick="submitRename()" data-toggle="tooltip" data-placement="bottom" title="Renomear"><i class="fa fa-pencil fa-fw"></i></button>
+                    <button class="btn btn-warning" onclick="window.location.href='do_move/<?php echo $file; ?>'" data-toggle="tooltip" data-placement="bottom" title="Mover"><i class="fa fa-exchange fa-fw"></i></button>
                     <button class="btn btn-warning" onclick="window.location.href = 'do_mark/<?php echo $file; ?>'" data-toggle="tooltip" data-placement="bottom" title="Marca D'água"><i class="fa fa-tint fa-fw"></i></button>
                     <button class="btn btn-warning" onclick="window.location.href = 'do_resize/<?php echo $file; ?>'" data-toggle="tooltip" data-placement="bottom" title="Redimencionar"><i class="fa fa-expand fa-fw"></i></button>
                     <button class="btn btn-warning" onclick="submitDelete()" data-toggle="tooltip" data-placement="bottom" title="Lixeira"><i class="fa fa-trash-o fa-fw"></i></button>

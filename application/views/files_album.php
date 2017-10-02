@@ -27,8 +27,8 @@
                 </p>
                 <p>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button class="btn btn-warning" onclick="submitForm()"><i class="fa fa-pencil fa-fw"></i></button>
-                    <a class="btn btn-warning" href="dir_delete/<?php echo $file; ?>"><i class="fa fa-trash-o fa-fw"></i></a>
+                    <button class="btn btn-warning" onclick="submitForm()" data-toggle="tooltip" data-placement="bottom" title="Renomear"><i class="fa fa-pencil fa-fw"></i></button>
+                    <a class="btn btn-warning" href="dir_delete/<?php echo $file; ?>" data-toggle="tooltip" data-placement="bottom" title="Excluir"><i class="fa fa-trash-o fa-fw"></i></a>
                 </div>
                 </p>                    
             </div><!-- /.col-lg-4 -->
